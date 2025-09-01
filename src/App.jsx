@@ -4,6 +4,7 @@ import './App.css'
 // 懒加载组件
 const ProjectDetail = lazy(() => import('./components/ProjectDetail'))
 const Profile = lazy(() => import('./components/Profile'))
+const UIShowcase = lazy(() => import('./components/UIShowcase'))
 
 function App() {
   const [activeTab, setActiveTab] = useState('home')
@@ -140,6 +141,12 @@ function App() {
               onClick={() => setActiveTab('profile')}
             >
               个人资料
+            </button>
+            <button 
+              className={activeTab === 'ui' ? 'nav-link active' : 'nav-link'}
+              onClick={() => setActiveTab('ui')}
+            >
+              UI组件
             </button>
             <button 
               className={activeTab === 'about' ? 'nav-link active' : 'nav-link'}
@@ -286,6 +293,18 @@ function App() {
             </div>
           }>
             <Profile />
+          </Suspense>
+        )}
+
+        {/* UI组件展示页面 */}
+        {activeTab === 'ui' && (
+          <Suspense fallback={
+            <div className="page-loading">
+              <div className="loading-spinner"></div>
+              <p>正在加载UI组件展示...</p>
+            </div>
+          }>
+            <UIShowcase />
           </Suspense>
         )}
 
