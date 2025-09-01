@@ -1,0 +1,370 @@
+/* ====================================
+   🏷️ Badge 组件样式
+   基于设计令牌系统的徽章组件
+   ==================================== */
+
+/* 徽章包装器 */
+.badge-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* 徽章基础样式 */
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  border: 2px solid var(--bg-primary);
+  transition: all var(--duration-150) var(--ease-in-out);
+  z-index: 1;
+}
+
+/* 独立徽章 */
+.badge--standalone {
+  position: static;
+  transform: none;
+  border: none;
+}
+
+/* 🎨 徽章变体 - Solid 样式 */
+.badge--solid.badge--primary {
+  background: var(--color-primary-500);
+  color: white;
+}
+
+.badge--solid.badge--secondary {
+  background: var(--color-secondary-500);
+  color: white;
+}
+
+.badge--solid.badge--success {
+  background: var(--color-success-500);
+  color: white;
+}
+
+.badge--solid.badge--warning {
+  background: var(--color-warning-500);
+  color: white;
+}
+
+.badge--solid.badge--danger {
+  background: var(--color-danger-500);
+  color: white;
+}
+
+.badge--solid.badge--info {
+  background: var(--color-info-500);
+  color: white;
+}
+
+.badge--solid.badge--gray {
+  background: var(--color-gray-500);
+  color: white;
+}
+
+/* 🎨 徽章变体 - Outline 样式 */
+.badge--outline.badge--primary {
+  background: transparent;
+  color: var(--color-primary-500);
+  border-color: var(--color-primary-500);
+}
+
+.badge--outline.badge--secondary {
+  background: transparent;
+  color: var(--color-secondary-500);
+  border-color: var(--color-secondary-500);
+}
+
+.badge--outline.badge--success {
+  background: transparent;
+  color: var(--color-success-500);
+  border-color: var(--color-success-500);
+}
+
+.badge--outline.badge--warning {
+  background: transparent;
+  color: var(--color-warning-500);
+  border-color: var(--color-warning-500);
+}
+
+.badge--outline.badge--danger {
+  background: transparent;
+  color: var(--color-danger-500);
+  border-color: var(--color-danger-500);
+}
+
+.badge--outline.badge--info {
+  background: transparent;
+  color: var(--color-info-500);
+  border-color: var(--color-info-500);
+}
+
+.badge--outline.badge--gray {
+  background: transparent;
+  color: var(--color-gray-500);
+  border-color: var(--color-gray-500);
+}
+
+/* 🎨 徽章变体 - Soft 样式 */
+.badge--soft.badge--primary {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-primary-600);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.badge--soft.badge--secondary {
+  background: rgba(20, 184, 166, 0.1);
+  color: var(--color-secondary-600);
+  border-color: rgba(20, 184, 166, 0.2);
+}
+
+.badge--soft.badge--success {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--color-success-600);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.badge--soft.badge--warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning-600);
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.badge--soft.badge--danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger-600);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.badge--soft.badge--info {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-info-600);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.badge--soft.badge--gray {
+  background: rgba(107, 114, 128, 0.1);
+  color: var(--color-gray-600);
+  border-color: rgba(107, 114, 128, 0.2);
+}
+
+/* 📏 徽章尺寸 */
+
+/* Small 小尺寸 */
+.badge--small {
+  min-width: var(--size-4);
+  height: var(--size-4);
+  padding: 0 var(--size-1);
+  font-size: var(--font-size-xs);
+}
+
+.badge--small.badge--dot {
+  min-width: var(--size-2);
+  width: var(--size-2);
+  height: var(--size-2);
+  padding: 0;
+}
+
+/* Medium 中等尺寸 */
+.badge--medium {
+  min-width: var(--size-5);
+  height: var(--size-5);
+  padding: 0 var(--size-1_5);
+  font-size: var(--font-size-xs);
+}
+
+.badge--medium.badge--dot {
+  min-width: var(--size-2_5);
+  width: var(--size-2_5);
+  height: var(--size-2_5);
+  padding: 0;
+}
+
+/* Large 大尺寸 */
+.badge--large {
+  min-width: var(--size-6);
+  height: var(--size-6);
+  padding: 0 var(--size-2);
+  font-size: var(--font-size-sm);
+}
+
+.badge--large.badge--dot {
+  min-width: var(--size-3);
+  width: var(--size-3);
+  height: var(--size-3);
+  padding: 0;
+}
+
+/* 🔄 徽章形状 */
+
+/* Circle 圆形 */
+.badge--circle {
+  border-radius: var(--radius-full);
+}
+
+/* Rounded 圆角 */
+.badge--rounded {
+  border-radius: var(--radius-base);
+}
+
+/* Square 方形 */
+.badge--square {
+  border-radius: 0;
+}
+
+/* 🔴 点状徽章 */
+.badge--dot {
+  border-radius: var(--radius-full);
+  animation: badgePulse 2s infinite;
+}
+
+/* 🌓 主题适配 */
+[data-theme="light"] .badge {
+  border-color: white;
+}
+
+[data-theme="light"] .badge--standalone {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .badge--soft.badge--primary {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-primary-700);
+}
+
+[data-theme="light"] .badge--soft.badge--secondary {
+  background: rgba(20, 184, 166, 0.1);
+  color: var(--color-secondary-700);
+}
+
+[data-theme="light"] .badge--soft.badge--success {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--color-success-700);
+}
+
+[data-theme="light"] .badge--soft.badge--warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning-700);
+}
+
+[data-theme="light"] .badge--soft.badge--danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger-700);
+}
+
+[data-theme="light"] .badge--soft.badge--info {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-info-700);
+}
+
+[data-theme="light"] .badge--soft.badge--gray {
+  background: rgba(107, 114, 128, 0.1);
+  color: var(--color-gray-700);
+}
+
+/* 🚀 动画效果 */
+@keyframes badgePulse {
+  0% {
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  70% {
+    box-shadow: 0 0 0 4px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* 🎪 特殊徽章变体 */
+
+/* 通知徽章 */
+.badge--notification {
+  animation: badgeNotification 0.5s ease-out;
+}
+
+@keyframes badgeNotification {
+  0% {
+    transform: translate(50%, -50%) scale(0);
+  }
+  50% {
+    transform: translate(50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(50%, -50%) scale(1);
+  }
+}
+
+/* 状态徽章 */
+.badge--online {
+  background: var(--color-success-500);
+  border-color: var(--bg-primary);
+}
+
+.badge--offline {
+  background: var(--color-gray-500);
+  border-color: var(--bg-primary);
+}
+
+.badge--busy {
+  background: var(--color-danger-500);
+  border-color: var(--bg-primary);
+}
+
+.badge--away {
+  background: var(--color-warning-500);
+  border-color: var(--bg-primary);
+}
+
+/* 📱 响应式设计 */
+@media (max-width: 640px) {
+  .badge--large {
+    min-width: var(--size-5);
+    height: var(--size-5);
+    padding: 0 var(--size-1_5);
+    font-size: var(--font-size-xs);
+  }
+  
+  .badge--large.badge--dot {
+    min-width: var(--size-2_5);
+    width: var(--size-2_5);
+    height: var(--size-2_5);
+  }
+}
+
+/* 🎯 辅助功能 */
+@media (prefers-reduced-motion: reduce) {
+  .badge--dot {
+    animation: none;
+  }
+  
+  .badge--notification {
+    animation: none;
+  }
+}
+
+/* 徽章组合样式 */
+.badge-group {
+  display: inline-flex;
+  gap: var(--size-1);
+  align-items: center;
+}
+
+.badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-2);
+  align-items: center;
+}
+
+/* 徽章工具提示 */
+.badge[title]:hover {
+  cursor: help;
+}

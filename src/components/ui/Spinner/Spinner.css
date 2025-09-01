@@ -1,0 +1,394 @@
+/* ====================================
+   ⏳ Spinner 组件样式
+   基于设计令牌系统的加载动画组件
+   ==================================== */
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-2);
+}
+
+/* 🎨 加载器颜色 */
+.spinner--primary {
+  color: var(--color-primary-500);
+}
+
+.spinner--secondary {
+  color: var(--color-secondary-500);
+}
+
+.spinner--white {
+  color: white;
+}
+
+.spinner--gray {
+  color: var(--color-gray-500);
+}
+
+/* 📏 加载器尺寸 */
+
+/* Small 小尺寸 */
+.spinner--small .spinner__icon {
+  width: var(--size-4);
+  height: var(--size-4);
+}
+
+.spinner--small .spinner__pulse {
+  width: var(--size-4);
+  height: var(--size-4);
+}
+
+.spinner--small .spinner__bounce-dot {
+  width: var(--size-1_5);
+  height: var(--size-1_5);
+}
+
+.spinner--small .spinner__wave-bar {
+  width: var(--size-1);
+  height: var(--size-4);
+}
+
+.spinner--small .spinner__dot {
+  width: var(--size-1_5);
+  height: var(--size-1_5);
+}
+
+.spinner--small .spinner__label {
+  font-size: var(--font-size-sm);
+}
+
+/* Medium 中等尺寸 */
+.spinner--medium .spinner__icon {
+  width: var(--size-6);
+  height: var(--size-6);
+}
+
+.spinner--medium .spinner__pulse {
+  width: var(--size-6);
+  height: var(--size-6);
+}
+
+.spinner--medium .spinner__bounce-dot {
+  width: var(--size-2);
+  height: var(--size-2);
+}
+
+.spinner--medium .spinner__wave-bar {
+  width: var(--size-1_5);
+  height: var(--size-6);
+}
+
+.spinner--medium .spinner__dot {
+  width: var(--size-2);
+  height: var(--size-2);
+}
+
+.spinner--medium .spinner__label {
+  font-size: var(--font-size-base);
+}
+
+/* Large 大尺寸 */
+.spinner--large .spinner__icon {
+  width: var(--size-8);
+  height: var(--size-8);
+}
+
+.spinner--large .spinner__pulse {
+  width: var(--size-8);
+  height: var(--size-8);
+}
+
+.spinner--large .spinner__bounce-dot {
+  width: var(--size-3);
+  height: var(--size-3);
+}
+
+.spinner--large .spinner__wave-bar {
+  width: var(--size-2);
+  height: var(--size-8);
+}
+
+.spinner--large .spinner__dot {
+  width: var(--size-3);
+  height: var(--size-3);
+}
+
+.spinner--large .spinner__label {
+  font-size: var(--font-size-lg);
+}
+
+/* 🌀 Spin 动画类型 */
+.spinner--spin .spinner__icon {
+  animation: spinRotate var(--duration-1000) linear infinite;
+}
+
+@keyframes spinRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 💓 Pulse 动画类型 */
+.spinner__pulse {
+  background: currentColor;
+  border-radius: var(--radius-full);
+  animation: spinnerPulse var(--duration-1000) ease-in-out infinite;
+}
+
+@keyframes spinnerPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+/* 🏀 Bounce 动画类型 */
+.spinner__bounce-container {
+  display: flex;
+  gap: var(--size-1);
+}
+
+.spinner__bounce-dot {
+  background: currentColor;
+  border-radius: var(--radius-full);
+  animation: spinnerBounce var(--duration-700) ease-in-out infinite;
+}
+
+.spinner__bounce-dot:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.spinner__bounce-dot:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.spinner__bounce-dot:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+@keyframes spinnerBounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40%, 43% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 🌊 Wave 动画类型 */
+.spinner__wave-container {
+  display: flex;
+  gap: var(--size-1);
+  align-items: center;
+}
+
+.spinner__wave-bar {
+  background: currentColor;
+  border-radius: var(--radius-sm);
+  animation: spinnerWave var(--duration-1000) ease-in-out infinite;
+}
+
+.spinner__wave-bar:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.spinner__wave-bar:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.spinner__wave-bar:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.spinner__wave-bar:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+.spinner__wave-bar:nth-child(5) {
+  animation-delay: 400ms;
+}
+
+@keyframes spinnerWave {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+  }
+}
+
+/* 🔴 Dots 动画类型 */
+.spinner__dots-container {
+  display: flex;
+  gap: var(--size-1);
+}
+
+.spinner__dot {
+  background: currentColor;
+  border-radius: var(--radius-full);
+  animation: spinnerDots var(--duration-1000) ease-in-out infinite;
+}
+
+.spinner__dot:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.spinner__dot:nth-child(2) {
+  animation-delay: 200ms;
+}
+
+.spinner__dot:nth-child(3) {
+  animation-delay: 400ms;
+}
+
+@keyframes spinnerDots {
+  0%, 20%, 80%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 📝 加载标签 */
+.spinner__label {
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+}
+
+/* 🎭 覆盖层模式 */
+.spinner--overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: var(--z-modal);
+  animation: overlayFadeIn var(--duration-200) var(--ease-out);
+}
+
+.spinner--overlay .spinner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-4);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--size-8);
+  box-shadow: var(--shadow-2xl);
+  animation: overlaySlideIn var(--duration-300) var(--ease-out);
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlaySlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 🌓 主题适配 */
+[data-theme="light"] .spinner--overlay {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .spinner--overlay .spinner__content {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 📱 响应式设计 */
+@media (max-width: 640px) {
+  .spinner--overlay .spinner__content {
+    padding: var(--size-6);
+    margin: var(--size-4);
+  }
+  
+  .spinner--large .spinner__icon {
+    width: var(--size-6);
+    height: var(--size-6);
+  }
+  
+  .spinner--large .spinner__pulse {
+    width: var(--size-6);
+    height: var(--size-6);
+  }
+  
+  .spinner--large .spinner__label {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* 🎯 辅助功能 */
+@media (prefers-reduced-motion: reduce) {
+  .spinner__icon,
+  .spinner__pulse,
+  .spinner__bounce-dot,
+  .spinner__wave-bar,
+  .spinner__dot {
+    animation: none;
+  }
+  
+  .spinner--overlay,
+  .spinner--overlay .spinner__content {
+    animation: none;
+  }
+}
+
+/* 🎪 特殊用途变体 */
+
+/* 内联加载器 */
+.spinner--inline {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+/* 按钮加载器 */
+.spinner--button {
+  margin-right: var(--size-2);
+}
+
+/* 页面加载器 */
+.spinner--page {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--z-modal);
+}
+
+/* 卡片加载器 */
+.spinner--card {
+  padding: var(--size-8);
+  background: var(--glass-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+}

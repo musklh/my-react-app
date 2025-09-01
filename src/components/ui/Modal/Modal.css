@@ -1,0 +1,282 @@
+/* ====================================
+   🪟 Modal 组件样式
+   基于设计令牌系统的模态框组件
+   ==================================== */
+
+/* 模态框遮罩层 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-modal-backdrop);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--size-4);
+  animation: modalOverlayFadeIn var(--duration-200) var(--ease-out);
+}
+
+/* 模态框主体 */
+.modal {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-2xl);
+  max-height: 90vh;
+  overflow: hidden;
+  animation: modalSlideIn var(--duration-300) var(--ease-out);
+  outline: none;
+}
+
+/* 📏 模态框尺寸 */
+
+/* Small 小尺寸 */
+.modal--small {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Medium 中等尺寸 */
+.modal--medium {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Large 大尺寸 */
+.modal--large {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Fullscreen 全屏 */
+.modal--fullscreen {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* 🎨 模态框头部 */
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--size-6) var(--size-6) var(--size-4);
+  border-bottom: 1px solid var(--border-primary);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.modal__title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: var(--line-height-tight);
+}
+
+/* 关闭按钮 */
+.modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-10);
+  height: var(--size-10);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-150) var(--ease-in-out);
+  flex-shrink: 0;
+}
+
+.modal__close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  transform: scale(1.05);
+}
+
+.modal__close:active {
+  transform: scale(0.95);
+}
+
+.modal__close-icon {
+  width: var(--size-5);
+  height: var(--size-5);
+  flex-shrink: 0;
+}
+
+/* 📝 模态框内容 */
+.modal__body {
+  padding: var(--size-6);
+  overflow-y: auto;
+  max-height: calc(90vh - 120px);
+}
+
+.modal--fullscreen .modal__body {
+  max-height: calc(100vh - 120px);
+  padding: var(--size-8);
+}
+
+/* 🎪 动画效果 */
+@keyframes modalOverlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 🌓 主题适配 */
+[data-theme="light"] .modal {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .modal__header {
+  background: rgba(0, 0, 0, 0.02);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .modal__close:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 📱 响应式设计 */
+@media (max-width: 640px) {
+  .modal-overlay {
+    padding: var(--size-2);
+  }
+  
+  .modal--large {
+    max-width: none;
+    width: 100%;
+  }
+  
+  .modal__header {
+    padding: var(--size-4) var(--size-4) var(--size-3);
+  }
+  
+  .modal__title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .modal__body {
+    padding: var(--size-4);
+    max-height: calc(90vh - 100px);
+  }
+  
+  .modal__close {
+    width: var(--size-8);
+    height: var(--size-8);
+  }
+  
+  .modal__close-icon {
+    width: var(--size-4);
+    height: var(--size-4);
+  }
+}
+
+/* 🎯 辅助功能 */
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay,
+  .modal {
+    animation: none;
+  }
+  
+  .modal__close {
+    transition: none;
+  }
+}
+
+/* 滚动条样式 */
+.modal__body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal__body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.modal__body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.modal__body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 🎨 特殊模态框变体 */
+
+/* 确认对话框样式 */
+.modal--confirm .modal__body {
+  text-align: center;
+  padding: var(--size-8) var(--size-6);
+}
+
+.modal--confirm .modal__title {
+  color: var(--color-warning-500);
+}
+
+/* 成功对话框样式 */
+.modal--success .modal__title {
+  color: var(--color-success-500);
+}
+
+/* 错误对话框样式 */
+.modal--danger .modal__title {
+  color: var(--color-danger-500);
+}
+
+/* 信息对话框样式 */
+.modal--info .modal__title {
+  color: var(--color-info-500);
+}
+
+/* 模态框操作按钮区域 */
+.modal__actions {
+  display: flex;
+  gap: var(--size-3);
+  justify-content: flex-end;
+  padding: var(--size-4) var(--size-6) var(--size-6);
+  border-top: 1px solid var(--border-primary);
+  background: rgba(255, 255, 255, 0.02);
+  margin-top: auto;
+}
+
+.modal__actions--center {
+  justify-content: center;
+}
+
+.modal__actions--start {
+  justify-content: flex-start;
+}
+
+@media (max-width: 640px) {
+  .modal__actions {
+    padding: var(--size-3) var(--size-4) var(--size-4);
+    gap: var(--size-2);
+  }
+}

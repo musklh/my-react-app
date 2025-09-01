@@ -1,0 +1,386 @@
+/* ====================================
+   📝 Input 组件样式
+   基于设计令牌系统的输入框组件
+   ==================================== */
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1_5);
+}
+
+.input-wrapper--full-width {
+  width: 100%;
+}
+
+/* 🏷️ 标签样式 */
+.input__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-1);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  line-height: var(--line-height-tight);
+  cursor: pointer;
+}
+
+.input__required {
+  color: var(--color-danger-500);
+  font-weight: var(--font-weight-bold);
+}
+
+/* 📦 输入框容器 */
+.input__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-primary);
+  transition: all var(--duration-150) var(--ease-in-out);
+  overflow: hidden;
+}
+
+.input__container:focus-within {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: -1px;
+}
+
+/* 🎨 输入框变体样式 */
+
+/* Outline 边框样式 */
+.input__container--outline {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border-color: var(--border-primary);
+}
+
+.input__container--outline:hover:not(.input__container--disabled) {
+  border-color: var(--color-primary-400);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.input__container--outline.input__container--focused {
+  border-color: var(--color-primary-500);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Filled 填充样式 */
+.input__container--filled {
+  background: var(--bg-secondary);
+  border-color: transparent;
+}
+
+.input__container--filled:hover:not(.input__container--disabled) {
+  background: var(--bg-tertiary);
+}
+
+.input__container--filled.input__container--focused {
+  background: var(--bg-tertiary);
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Underline 下划线样式 */
+.input__container--underline {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--border-primary);
+  border-radius: 0;
+  padding-bottom: var(--size-1);
+}
+
+.input__container--underline:hover:not(.input__container--disabled) {
+  border-bottom-color: var(--color-primary-400);
+}
+
+.input__container--underline.input__container--focused {
+  border-bottom-color: var(--color-primary-500);
+}
+
+.input__container--underline:focus-within {
+  outline: none;
+}
+
+/* 📏 输入框尺寸 */
+
+/* Small 小尺寸 */
+.input__container--small {
+  padding: var(--size-1_5) var(--size-3);
+  border-radius: var(--radius-md);
+  min-height: var(--size-8);
+}
+
+.input__container--small .input__field {
+  font-size: var(--font-size-sm);
+}
+
+/* Medium 中等尺寸 */
+.input__container--medium {
+  padding: var(--size-2_5) var(--size-4);
+  border-radius: var(--radius-lg);
+  min-height: var(--size-10);
+}
+
+.input__container--medium .input__field {
+  font-size: var(--font-size-base);
+}
+
+/* Large 大尺寸 */
+.input__container--large {
+  padding: var(--size-3) var(--size-5);
+  border-radius: var(--radius-xl);
+  min-height: var(--size-12);
+}
+
+.input__container--large .input__field {
+  font-size: var(--font-size-lg);
+}
+
+/* 🎯 输入框状态 */
+
+/* 错误状态 */
+.input__container--error {
+  border-color: var(--color-danger-500);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.input__container--error:hover {
+  border-color: var(--color-danger-600);
+}
+
+.input__container--error.input__container--focused {
+  border-color: var(--color-danger-500);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+/* 禁用状态 */
+.input__container--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 前缀/后缀容器调整 */
+.input__container--with-prefix {
+  padding-left: 0;
+}
+
+.input__container--with-suffix {
+  padding-right: 0;
+}
+
+/* 📝 输入框字段 */
+.input__field {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  transition: all var(--duration-150) var(--ease-in-out);
+}
+
+.input__field::placeholder {
+  color: var(--text-tertiary);
+  transition: opacity var(--duration-150) var(--ease-in-out);
+}
+
+.input__field:focus::placeholder {
+  opacity: 0.7;
+}
+
+.input__field:disabled {
+  cursor: not-allowed;
+}
+
+/* 🎪 前缀和后缀 */
+.input__prefix,
+.input__suffix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  pointer-events: none;
+}
+
+.input__prefix {
+  padding-left: var(--size-3);
+  padding-right: var(--size-2);
+}
+
+.input__suffix {
+  padding-left: var(--size-2);
+  padding-right: var(--size-3);
+}
+
+.input__container--small .input__prefix {
+  padding-left: var(--size-2);
+  padding-right: var(--size-1_5);
+}
+
+.input__container--small .input__suffix {
+  padding-left: var(--size-1_5);
+  padding-right: var(--size-2);
+}
+
+.input__container--large .input__prefix {
+  padding-left: var(--size-4);
+  padding-right: var(--size-2_5);
+}
+
+.input__container--large .input__suffix {
+  padding-left: var(--size-2_5);
+  padding-right: var(--size-4);
+}
+
+/* 🗑️ 清除按钮 */
+.input__clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-6);
+  height: var(--size-6);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-base);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all var(--duration-150) var(--ease-in-out);
+  margin-right: var(--size-1);
+}
+
+.input__clear:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+}
+
+.input__clear:active {
+  transform: scale(0.95);
+}
+
+.input__clear-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+/* 💬 提示和错误信息 */
+.input__hint,
+.input__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-1_5);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-tight);
+}
+
+.input__hint {
+  color: var(--text-tertiary);
+}
+
+.input__error {
+  color: var(--color-danger-500);
+  font-weight: var(--font-weight-medium);
+}
+
+.input__error-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+/* 🌓 深色主题适配 */
+[data-theme="light"] .input__container--outline {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: var(--color-gray-300);
+}
+
+[data-theme="light"] .input__container--outline:hover:not(.input__container--disabled) {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--color-primary-400);
+}
+
+[data-theme="light"] .input__container--outline.input__container--focused {
+  background: white;
+  border-color: var(--color-primary-500);
+}
+
+[data-theme="light"] .input__container--filled {
+  background: var(--color-gray-100);
+}
+
+[data-theme="light"] .input__container--filled:hover:not(.input__container--disabled) {
+  background: var(--color-gray-200);
+}
+
+[data-theme="light"] .input__container--filled.input__container--focused {
+  background: white;
+}
+
+/* 🚀 动画效果 */
+.input__container {
+  animation: slideInUp var(--duration-300) var(--ease-out);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 响应式设计 */
+@media (max-width: 640px) {
+  .input__container--large {
+    padding: var(--size-2_5) var(--size-4);
+    min-height: var(--size-10);
+  }
+  
+  .input__container--large .input__field {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* 🎯 辅助功能 */
+@media (prefers-reduced-motion: reduce) {
+  .input__container,
+  .input__field,
+  .input__clear {
+    transition: none;
+  }
+  
+  .input__container {
+    animation: none;
+  }
+}
+
+/* 浏览器兼容性 */
+.input__field::-webkit-outer-spin-button,
+.input__field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input__field[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* 自动填充样式 */
+.input__field:-webkit-autofill,
+.input__field:-webkit-autofill:hover,
+.input__field:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-primary) inset;
+  -webkit-text-fill-color: var(--text-primary);
+  transition: background-color 5000s ease-in-out 0s;
+}

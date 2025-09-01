@@ -1,0 +1,374 @@
+/* ====================================
+   🃏 Card 组件样式
+   基于设计令牌系统的卡片组件
+   ==================================== */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--glass-bg);
+  border-radius: var(--radius-2xl);
+  transition: all var(--duration-300) var(--ease-in-out);
+  overflow: hidden;
+}
+
+/* 🎨 卡片变体样式 */
+
+/* Outline 边框样式 */
+.card--outline {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+
+/* Filled 填充样式 */
+.card--filled {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+}
+
+/* Shadow 阴影样式 */
+.card--shadow {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Flat 平坦样式 */
+.card--flat {
+  background: transparent;
+  border: none;
+}
+
+/* 📏 卡片尺寸 */
+
+/* Small 小尺寸 */
+.card--small {
+  padding: var(--size-4);
+}
+
+.card--small .card__header {
+  padding: 0 0 var(--size-3) 0;
+}
+
+.card--small .card__footer {
+  padding: var(--size-3) 0 0 0;
+}
+
+.card--small .card__title {
+  font-size: var(--font-size-base);
+}
+
+/* Medium 中等尺寸 */
+.card--medium {
+  padding: var(--size-6);
+}
+
+.card--medium .card__header {
+  padding: 0 0 var(--size-4) 0;
+}
+
+.card--medium .card__footer {
+  padding: var(--size-4) 0 0 0;
+}
+
+.card--medium .card__title {
+  font-size: var(--font-size-lg);
+}
+
+/* Large 大尺寸 */
+.card--large {
+  padding: var(--size-8);
+}
+
+.card--large .card__header {
+  padding: 0 0 var(--size-6) 0;
+}
+
+.card--large .card__footer {
+  padding: var(--size-6) 0 0 0;
+}
+
+.card--large .card__title {
+  font-size: var(--font-size-xl);
+}
+
+/* 🎯 卡片状态 */
+
+/* 可悬浮状态 */
+.card--hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card--outline.card--hoverable:hover {
+  border-color: var(--color-primary-400);
+}
+
+.card--filled.card--hoverable:hover {
+  background: var(--bg-tertiary);
+}
+
+/* 可点击状态 */
+.card--clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.card--clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card--clickable:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+.card--clickable:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* 加载状态 */
+.card--loading {
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.card__loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.card__spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__spinner-icon {
+  width: var(--size-8);
+  height: var(--size-8);
+  color: var(--color-primary-500);
+  animation: spin var(--duration-1000) linear infinite;
+}
+
+/* 🎨 卡片子元素 */
+
+/* 卡片头部 */
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.card__title {
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: var(--line-height-tight);
+}
+
+/* 卡片主体 */
+.card__body {
+  flex: 1;
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.card__body > *:first-child {
+  margin-top: 0;
+}
+
+.card__body > *:last-child {
+  margin-bottom: 0;
+}
+
+/* 卡片页脚 */
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+}
+
+/* 🌓 主题适配 */
+[data-theme="light"] .card--outline {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .card--filled {
+  background: var(--color-gray-100);
+}
+
+[data-theme="light"] .card--shadow {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .card--hoverable:hover.card--outline {
+  border-color: var(--color-primary-300);
+}
+
+[data-theme="light"] .card--hoverable:hover.card--filled {
+  background: var(--color-gray-200);
+}
+
+/* 🎪 特殊卡片变体 */
+
+/* 统计卡片 */
+.card--stat {
+  text-align: center;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+}
+
+.card--stat .card__title {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.card--stat .card__body {
+  color: white;
+}
+
+/* 特色卡片 */
+.card--featured {
+  background: var(--gradient-rainbow);
+  color: white;
+  border: none;
+}
+
+.card--featured .card__title {
+  color: white;
+}
+
+.card--featured .card__body {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 警告卡片 */
+.card--warning {
+  border-color: var(--color-warning-500);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.card--warning .card__title {
+  color: var(--color-warning-600);
+}
+
+/* 错误卡片 */
+.card--danger {
+  border-color: var(--color-danger-500);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.card--danger .card__title {
+  color: var(--color-danger-600);
+}
+
+/* 成功卡片 */
+.card--success {
+  border-color: var(--color-success-500);
+  background: rgba(34, 197, 94, 0.05);
+}
+
+.card--success .card__title {
+  color: var(--color-success-600);
+}
+
+/* 📱 响应式设计 */
+@media (max-width: 640px) {
+  .card--large {
+    padding: var(--size-6);
+  }
+  
+  .card--large .card__header {
+    padding: 0 0 var(--size-4) 0;
+  }
+  
+  .card--large .card__footer {
+    padding: var(--size-4) 0 0 0;
+  }
+  
+  .card--large .card__title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .card__footer {
+    flex-direction: column;
+    gap: var(--size-2);
+    align-items: flex-start;
+  }
+}
+
+/* 🚀 动画关键帧 */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 🎯 辅助功能 */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  
+  .card--hoverable:hover,
+  .card--clickable:hover,
+  .card--clickable:active {
+    transform: none;
+  }
+  
+  .card__spinner-icon {
+    animation: none;
+  }
+}
+
+/* 卡片组合样式 */
+.card-grid {
+  display: grid;
+  gap: var(--size-6);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.card-stack {
+  position: relative;
+}
+
+.card-stack .card:not(:first-child) {
+  margin-top: calc(-1 * var(--size-16));
+  transform: translateY(var(--size-2)) scale(0.98);
+  opacity: 0.8;
+}
+
+.card-stack .card:not(:first-child):not(:nth-child(2)) {
+  transform: translateY(var(--size-4)) scale(0.96);
+  opacity: 0.6;
+}
